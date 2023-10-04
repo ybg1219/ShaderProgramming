@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Week5/Week5.unity
+- path: Assets/Week5/Rimlight.unity
   isLoaded: 1
   isActive: 1

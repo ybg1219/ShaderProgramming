@@ -15,7 +15,7 @@
 
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Lambert
+		#pragma surface surf Test noambient
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
@@ -46,6 +46,14 @@
 			o.Albedo = c.rgb;
 			o.Alpha = c.a;
 			o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
+		}
+		float4 LightingTest(SurfaceOutput s, float3 lightDir, float atten) {
+			float nDotL = dot(s.Normal, lightDir)*0.5 + 0.5;
+			nDotL = pow(nDotL, 2);
+			float4 final;
+			final.rgb = nDotL * s.Albedo*_LightColor0*atten;
+			final.a = s.Alpha;
+			return final;
 		}
         ENDCG
     }
