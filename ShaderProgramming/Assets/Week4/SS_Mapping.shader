@@ -38,8 +38,8 @@
         {
             o.Albedo = _Tint;
             float3 n = UnpackNormal(tex2D(_NormalTex, IN.uv_NormalTex));
-            n.x *= _NormalIntensity;
-            n.y *= _NormalIntensity;
+            //n.x *= _NormalIntensity;
+            //n.y *= _NormalIntensity;
             o.Normal = normalize(n.rgb);
         }
         ENDCG
