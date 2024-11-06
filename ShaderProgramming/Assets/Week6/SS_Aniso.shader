@@ -8,7 +8,7 @@
     _Specular("Specular Amount", Range(0,1)) = 0.5
     _SpecPower("Specular Power", Range(0,1)) = 0.5
     _AnisoDir("Anisotropic Direction", 2D) = ""{}
-    _AnisoOffset("Anisotropic Offset", Range(-1, 1)) = 0.2
+    _AnisoOffset("Anisotropic Offset", Range(-1, 1)) = -0.2
     }
     SubShader
     {
@@ -47,7 +47,6 @@
 
         half _Glossiness;
         half _Metallic;
-        fixed4 _Color;
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.

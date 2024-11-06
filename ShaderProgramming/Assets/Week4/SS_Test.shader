@@ -48,7 +48,7 @@
 			o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
 		}
 		float4 LightingTest(SurfaceOutput s, float3 lightDir, float atten) { // 꼭 Lighting 을 붙이기
-			float nDotL = saturate(dot(s.Normal, lightDir)); // saturate하면 속눈썹튀는게 많이 줄어든다.
+			float nDotL = pow(dot(s.Normal, lightDir)*0.5+0.5, 2); // saturate하면 속눈썹튀는게 많이 줄어든다.
 			return nDotL;
 		}
 		ENDCG

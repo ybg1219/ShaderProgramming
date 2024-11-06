@@ -4,8 +4,6 @@
 	{
 		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
-		_Glossiness("Smoothness", Range(0,1)) = 0.5
-		_Metallic("Metallic", Range(0,1)) = 0.0
 		_BumpMap("Normal",2D) = "bump" {}
 	}
 		SubShader
@@ -30,8 +28,6 @@
 			float2 uv_BumpMap;
 		};
 
-		half _Glossiness;
-		half _Metallic;
 		fixed4 _Color;
 
 		UNITY_INSTANCING_BUFFER_START(Props)

@@ -3,10 +3,7 @@
     Properties
     {
         _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "black" {}
 		_BumpTex("Normal", 2D) = "bump" {}
-		_RimPower("RimPower",Range(1,10)) = 3
-		_RimColor("RimColor",Color) =(1,1,1,1)
 
     }
     SubShader
@@ -21,10 +18,7 @@
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
 
-        sampler2D _MainTex;
 		sampler2D _BumpTex;
-		float _RimPower;
-		float4 _RimColor;
 
         struct Input
         {
@@ -46,15 +40,12 @@
 
         void surf (Input IN, inout SurfaceOutput o)
         {
-            // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) ;
-			o.Normal = UnpackNormal(tex2D(_BumpTex, IN.uv_BumpMap));
-
+            o.Normal = UnpackNormal(tex2D(_BumpTex, IN.uv_BumpMap));
 			float rim = saturate(dot(o.Normal, IN.viewDir));
-			//rim = pow(1 - rim,3); // 급격한 변화
-			rim = 1;
+			rim = pow(1 - rim,3); // 급격한 변화
+			//rim = 1;
 			//o.Emission = IN.worldPos.rgb; //world좌표 값을 color 값으로 사용, 이동시키면 색이 변함.
-			o.Emission = pow(frac(IN.worldPos.g*10 - _Time.y),20); // 좌표 *10 하면 촘촘해짐, 시간 빼면 위로 올라감.
+			o.Emission = _Color.rgb + pow(frac(IN.worldPos.g*10 - _Time.y),20)*_Color.rgb; // 좌표 *10 하면 촘촘해짐, 시간 빼면 위로 올라감.
             o.Alpha = rim*abs(sin(_Time.y*3)); // 깜빡거리도록, 절댓값 씌워서
         }
         ENDCG

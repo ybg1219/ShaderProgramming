@@ -13,7 +13,7 @@
         {
             CGPROGRAM
             #pragma target 4.0 // geometry shader 4.0 이상부터 작동.
-            #pragma vertex vert
+            #pragma vertex vert 
             #pragma geometry geom // geometry shader는 geom으로 부르겠다.
             #pragma fragment frag
             // make fog work
@@ -58,11 +58,12 @@
             v2g vert(appdata input)
             {
                 v2g output;
-                output.pos = UnityObjectToClipPos(input.vertex); // vertex 인지 pos 인지 확인할 것.
+                output.pos = UnityObjectToClipPos(input.vertex); // appdata vertex 인지 pos 인지 확인할 것.
                 output.uv = TRANSFORM_TEX(input.uv, _MainTex);
                 return output;
             }
             float3 VertexDist(float4 v0, float4 v1, float4 v2) {
+                // 길이 -> 양수 반환
                 float dist0 = length(v0);
                 float dist1 = length(v1);
                 float dist2 = length(v2);
@@ -73,7 +74,7 @@
             void geom(triangle v2g input[3], inout TriangleStream<g2f> triStream)
             {
                 g2f output;
-                float3 dist = VertexDist(input[0].pos, input[1].pos, input[2].pos);
+                float3 dist = VertexDist(input[0].pos, input[1].pos, input[2].pos); // pos to distance
 
                 for (int i = 0; i < 3; i++)
                 {
@@ -82,21 +83,36 @@
                     output.dist = float3(0, 0, 0); // dist 초기화
 
                     if (i == 0)// 스크롤 정도 w에 따라 x,y,z 스케일링돼서 색이 변하는 것.
-                        output.dist= float3(dist.x,0,0);
+                        output.dist=  float3(1,0,0); // float3(dist.x,0,0);
                     else if (i == 1)
-                        output.dist = float3(0,dist.y,0);
+                        output.dist =  float3(0,1, 0); // float3(0,dist.y,0);
                     else if (i == 2)
-                        output.dist = float3(0,0,dist.z);
+                        output.dist =  float3(0,0,1); //float3(0,0,dist.z);
 
                     triStream.Append(output);// 각 경우마다 한번씩 append
                 }
+                /*
+                // geom에서 파라미터로 받아온 tristream
+                g2f output;
+                output.pos= input[0].pos;
+                output.uv = input[0].uv;
+                tristream.Append[output];
+
+                output.pos= input[1].pos;
+                output.uv = input[1].uv;
+                tristream.Append[output];
+
+                output.pos= input[2].pos;
+                output.uv = input[2].uv;
+                tristream.Append[output];*/
             }
 
             
 
 
             fixed4 frag(g2f input) : SV_Target // 원래 v2f vertex에서 바로 넘겼는데 중간에 과정이 하나 더 생김.
-            { // 
+            { 
+                // float3 finalColor = 1; 
                 float3 finalColor = input.dist;
                 return float4 (finalColor,1);
             }
