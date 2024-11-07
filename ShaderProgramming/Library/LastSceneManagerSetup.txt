@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Week6/A_Phong.unity
+- path: Assets/Week3/lerp.unity
   isLoaded: 1
   isActive: 1
