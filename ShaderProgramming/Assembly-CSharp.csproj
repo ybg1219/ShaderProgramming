@@ -55,24 +55,26 @@
   <ItemGroup>
      <Compile Include="Assets\Week5\SetRadiusProperties.cs" />
      <None Include="Assets\Week3\SS_lerp.shader" />
+     <None Include="Assets\Week6\SS_Toon.shader" />
+     <None Include="Assets\Week7\SS_discontinuous.shader" />
      <None Include="Assets\Week3\SS_Grayscale.shader" />
-     <None Include="Assets\Week7\SS_BlinnPhong.shader" />
+     <None Include="Assets\Week6\SS_BlinnPhong.shader" />
      <None Include="Assets\Week5\SS_Lambert.shader" />
      <None Include="Assets\Week8\Data\Wireframe.shader" />
      <None Include="Assets\Week8\SS_Warping.shader" />
-     <None Include="Assets\Week7\SS_Phong.shader" />
      <None Include="Assets\Week8\UL_Wireframe.shader" />
      <None Include="Assets\Week5\SS_Mapping.shader" />
      <None Include="Assets\Week6\SS_Spec.shader" />
      <None Include="Assets\Week6\SS_RimLight.shader" />
      <None Include="Assets\Week5\SS_Test.shader" />
-     <None Include="Assets\Week7\SS_Aniso.shader" />
+     <None Include="Assets\Week6\SS_Aniso.shader" />
      <None Include="Assets\Week4\SS_Mult.shader" />
-     <None Include="Assets\Week7\SS_BasicOutline.shader" />
+     <None Include="Assets\Week7\SS_Fresnel.shader" />
      <None Include="Assets\Week4\SS_uv.shader" />
      <None Include="Assets\Week5\SS_Normal.shader" />
      <None Include="Assets\Week3\SS_pow.shader" />
      <None Include="Assets\Week6\SS_Hologram.shader" />
+     <None Include="Assets\Week6\SS_half.shader" />
      <None Include="Assets\Week5\SS_terrain.shader" />
      <None Include="Assets\Week5\SS_Quad.shader" />
      <None Include="Assets\Week4\SS_Anim.shader" />
@@ -81,7 +83,7 @@
      <None Include="Assets\Week8\UL_barycentric.shader" />
      <None Include="Assets\Week5\SS_BlinnPhong.shader" />
      <None Include="Assets\Week5\SS_RadiusShader.shader" />
-     <None Include="Assets\Week7\SS_BlinnPhongPrac.shader" />
+     <None Include="Assets\Week7\SS_PR.shader" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/bini0/Documents/gitrepo/ShaderProgramming/ShaderProgramming/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
